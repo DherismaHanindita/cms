@@ -1,6 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Htpp\Controllers\PageController;
+use App\Http\Controllers\fitur\AboutController as FiturAboutController;
+use App\Http\Controllers\fitur\HomeController as FiturHomeController;
+use App\Http\Controllers\fitur\NewsController;
+use App\Http\Controllers\fitur\ProductController;
+use App\Http\Controllers\fitur\ProgramController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 //PRAKTIKUM 1 
 //Routing Web FrameWork Laravel
-
+/*
 // URL '/'
 Route::get('/', function () { 
     return "Selamat Datang"; 
@@ -23,12 +32,46 @@ Route::get('/', function () {
  
 // URL '/about/'
 Route::get('/about', function () { 
-    return "NIM : 2041720018, 
-    Nama : Dherisma Hanindita Utami, 
-    Kelas : TI 2H"; 
+    return "NIM : 2041720018, Nama : Dherisma Hanindita Utami, Kelas : TI 2H"; 
    }); 
 
-// URL '/articles/{id}'
+// URL '/articles/{id}' 
 Route::get('/articles/{id}', function ($id) { 
     echo "Ini adalah halaman artikel dengan ID: ".$id; 
    }); 
+*/
+
+/*
+//PRAKTIKUM 2
+//Controller Web Framework Laravel
+Route::get('/',[PageController::class, 'index']);
+
+Route::get('/about',[PageController::class, 'about']);
+
+Route::get('/articles/{id}',[PageController::class, 'articles']);
+*/
+
+//PRAKTIKUM 3
+// Home
+Route::get('/', [FiturHomeController::class, 'index']);
+
+// Products
+Route::prefix('/products')->group(function(){
+    Route::get('/', [ProductController::class, 'index']);
+    Route::get('/detail/{id}', [ProductController::class, 'detail']);
+}) ;
+
+// News
+    Route::controller(NewsController::class)->group(function(){
+        Route::get('/news', 'index');
+        Route::get('/news/detail/{slug}', 'detail');
+    });
+
+// Program
+    Route::controller(ProgramController::class)->group(function(){
+        Route::get('/program/karir', 'karir');
+        Route::get('/program/magang', 'magang');
+        Route::get('/program/kunjungan-industri', 'industri');
+    });
+Route::get('/about', [FiturAboutController::class, 'index'])->name('about');
+
