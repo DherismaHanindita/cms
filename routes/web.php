@@ -13,6 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//PRAKTIKUM 1 
+//Routing Web FrameWork Laravel
+
+// URL '/'
+Route::get('/', function () { 
+    return "Selamat Datang"; 
+   });
+ 
+// URL '/about/'
+Route::get('/about', function () { 
+    return "NIM : 2041720018, 
+    Nama : Dherisma Hanindita Utami, 
+    Kelas : TI 2H"; 
+   }); 
+
+// URL '/articles/{id}'
+Route::get('/articles/{id}', function ($id) { 
+    echo "Ini adalah halaman artikel dengan ID: ".$id; 
+   }); 
