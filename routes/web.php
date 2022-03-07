@@ -40,7 +40,7 @@ Route::get('/articles/{id}', function ($id) {
     echo "Ini adalah halaman artikel dengan ID: ".$id; 
    }); 
 */
-
+\
 /*
 //PRAKTIKUM 2
 //Controller Web Framework Laravel
@@ -51,6 +51,7 @@ Route::get('/about',[PageController::class, 'about']);
 Route::get('/articles/{id}',[PageController::class, 'articles']);
 */
 
+/*
 //PRAKTIKUM 3
 // Home
 Route::get('/', [FiturHomeController::class, 'index']);
@@ -74,4 +75,28 @@ Route::prefix('/products')->group(function(){
         Route::get('/program/kunjungan-industri', 'industri');
     });
 Route::get('/about', [FiturAboutController::class, 'index'])->name('about');
+*/
 
+Route::get('/', function(){
+    return view('index');
+})->name('home');;
+
+Route::get('about', function(){
+    return view('about');
+})->name('about');;
+
+Route::get('rooms', function(){
+    return view('rooms');
+})->name('rooms');;
+
+Route::get('gallery', function(){
+    return view('gallery');
+})->name('gallery');;
+
+Route::get('dinning', function(){
+    return view('dinning');
+})->name('dinning');;
+
+Route::get('news', function(){
+    return view('news');
+})->name('news');;
